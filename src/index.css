@@ -1,0 +1,23 @@
+#content {
+    margin: 5% 7%
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li {
+    padding-left: 15px;
+    font-size: 16px;
+}
+
+#reflection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+#reflection div {
+    width: 70%;
+}

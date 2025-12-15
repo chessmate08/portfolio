@@ -1,0 +1,128 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrap {
+    /* or any other parent wrapper */
+    margin: 0;
+    display: flex;
+    min-height: auto;
+    height: 100dvh;
+    
+    perspective: 1000px;
+    font: 16px/1.4 sans-serif;
+    background-color: #232425;
+}
+
+.book {
+    display: flex;
+    margin: auto;
+    width: 35%;
+    min-width: 425.275px;
+    /*1* let pointer event go trough pages of lower Z than .book */
+    pointer-events: none;
+    transform-style: preserve-3d;
+    transition: translate 1s;
+    translate: calc(min(var(--c), 1) * 50%) 0%;
+    
+    
+    
+}
+
+.page {
+    --thickness: 5;
+    /* PS: Don't go below thickness 0.4 or the pages might transpare */
+    flex: none;
+    display: flex;
+    width: 100%;
+    min-width: 423.675px;
+    /*1* allow pointer events on pages */
+    pointer-events: all;
+    user-select: none;
+    transform-style: preserve-3d;
+    border: 1px solid #0008;
+    transform-origin: left center;
+    transition:
+        transform 1s,
+        rotate 1s ease-in calc((min(var(--i), var(--c)) - max(var(--i), var(--c))) * 50ms);
+    translate: calc(var(--i) * -100%) 0px 0px;
+    transform: translateZ(calc((var(--c) - var(--i) - 0.5) * calc(var(--thickness) * 1px)));
+    rotate: 0 1 0 calc(clamp(0, var(--c) - var(--i), 1) * -180deg);
+    
+}
+
+
+.front, .back {
+    flex: none;
+    width: 100%;
+    min-width: 423.675px;
+    padding: 2rem;
+    backface-visibility: hidden;
+    background-color: #fff;
+    
+    line-height: 1.5;
+    /* Fix backface visibility Firefox: */
+    translate: 0px;
+}
+.front p, .back p {
+    text-indent: 2em;
+}
+.front p:nth-child(1) {
+    margin-top: none;
+}
+.back {
+    background-image: linear-gradient(to right, #fff 80%, #ddd 100%);
+    translate: -100% 0;
+    rotate: 0 1 0 180deg;
+}
+
+.citation {
+    font-family: Arial, sans-serif; /* Sets the font for the citation */
+    font-size: 14px; /* Sets the font size */
+    color: #333; /* Sets the text color */
+    margin: 10px 0; /* Adds margin above and below the citation */
+    overflow-wrap: break-word
+}
+
+.citation strong {
+    font-weight: bold; /* Makes the description bold */
+}
+
+.citation em {
+    font-style: italic; /* Italicizes the website name */
+}
+
+.citation p {
+  padding-left: 2em; 
+  text-indent: -2em; 
+}
+
+
+.cliffnotes {
+    
+    display: flex;
+}
+.revisions {
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.revisions ul {
+    align-self: first baseline;
+}
+
+.reflection {
+    height:fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+.title {
+    display: flex;
+    justify-content: space-around
+}
